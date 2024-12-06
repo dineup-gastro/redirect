@@ -4,15 +4,9 @@ services:
     environment:
       - PORT=80
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.{{REF_NAME}}-redirect.rule=Host(`{{DOMAIN}}`)
-      - traefik.http.services.{{REF_NAME}}-redirect.loadbalancer.server.port=80
-      - traefik.http.routers.{{REF_NAME}}-redirect.entrypoints=websecure
-      - traefik.http.routers.{{REF_NAME}}-redirect.tls=true
-      - traefik.http.routers.{{REF_NAME}}-redirect.tls.certresolver=letsencrypt
-      - traefik.docker.network=traefik_network
+      - reprox.host={{DOMAIN}}
     networks:
-      - traefik_network
+      - reprox_network
 networks:
-  traefik_network:
+  reprox_network:
     external: true
